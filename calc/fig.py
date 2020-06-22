@@ -13,9 +13,13 @@ def application(environ, start_response):
             a, b = int(a), int(b)
             asb = str(a + b)
             amb = str(a * b)
-        response_body = html.format(asb, amb)
+        else:
+            asb = "Please"
+            amb = "Input Value"
     except:
-        response_body = html.format("숫자를", "입력해주세요")
+        asb = "Please"
+        amb = "Input @@@INT@@@ Value"
+    response_body = html.format(asb, amb)
     start_response('200 OK', [
         ('Content-Type', 'text/html'),
         ('Content-Length', str(len(response_body)))
