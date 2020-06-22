@@ -8,13 +8,14 @@ def application(environ, start_response):
     b = d.get('b', [''])[0]
     asb = ""
     amb = ""
-
-    if '' not in [a, b]:
-	a, b = int(a), int(b)
-    	asb = str(a + b)
-    	amb = str(a * b)
-    response_body = html.format(asb, amb)
-
+    try:
+        if '' not in [a, b]:
+            a, b = int(a), int(b)
+            asb = str(a + b)
+            amb = str(a * b)
+        response_body = html.format(asb, amb)
+    except:
+        response_body = html.format("숫자를", "입력해주세요")
     start_response('200 OK', [
         ('Content-Type', 'text/html'),
         ('Content-Length', str(len(response_body)))
